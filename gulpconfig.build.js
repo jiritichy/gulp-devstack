@@ -1,10 +1,12 @@
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+require('dotenv').config();
 
 // Paths
 // --------------
 
 const devBase = './src';
-const buildBase = './temp';
+const buildBase = './build';
 const tempBase = './temp';
 const contentBase = './content';
 const staticBase = './static';
@@ -14,18 +16,11 @@ const staticBase = './static';
 
 const sassBase = `${devBase}/scss`;
 const sassBuild = `${buildBase}/assets/css`;
-const sassAll = [`${sassBase}/*.scss`, `!${sassBase}/_*.scss`];
-// TODO: je potřeba _variables.scss?
-const sassCustom = [
+const sassAll = [
   `${sassBase}/*.scss`,
-  `${sassBase}/_variables.scss`,
+  `!${sassBase}/_*.scss`,
   `!${sassBase}/u-*.scss`,
-  `!${sassBase}/bootstrap.scss`,
 ];
-// TODO: je potřeba _variables.scss?
-const sassCore = [`${sassBase}/bootstrap.scss`, `${sassBase}/_variables.scss`];
-// TODO: je potřeba _variables.scss?
-const sassUtils = [`${sassBase}/u-*.scss`, `${sassBase}/_variables.scss`];
 const injectCss = `${sassBuild}/*.css`;
 
 // JavaScript
@@ -77,6 +72,7 @@ const postcssPluginsBase = [
   autoprefixer({
     grid: true,
   }),
+  cssnano(),
 ];
 
 const fontloadFile = `${devBase}/fonts.list`;
@@ -88,15 +84,56 @@ const fontLoadConfig = {
   fontDisplayType: 'swap',
 };
 
+const faviconSourceFile = `${gfxBase}/favicon/favicons-source.png`;
+const faviconBuild = `${buildBase}/assets/favicons`;
+const faviconGenConfig = {
+  appName: 'My App',
+  appShortName: 'App',
+  appDescription: 'This is my application',
+  developerName: 'Developer name',
+  developerURL: 'https://developerwebsite.com/',
+  background: '#000000',
+  path: '/assets/favicons/',
+  url: 'https://urlofwebsite.com/',
+  display: 'standalone',
+  orientation: 'portrait',
+  scope: '/',
+  start_url: '/index.html',
+  version: 1.0,
+  logging: false,
+  html: 'favicons.njk',
+  pipeHTML: true,
+  replace: false,
+  icons: {
+    android: false,
+    appleIcon: false,
+    appleStartup: false,
+    coast: false,
+    favicons: true,
+    firefox: false,
+    windows: false,
+    yandex: false,
+  },
+};
+
+// Files that need to be removed
+// --------------
+
+const buildRevManifest = `${tempBase}/rev-manifest.json`;
+
 // Exports
 // --------------
 
 module.exports = {
   buildBase,
+  buildRevManifest,
   contentBase,
   datasetPagesBuild,
   datasetPagesSource,
   devBase,
+  faviconBuild,
+  faviconGenConfig,
+  faviconSourceFile,
   fontLoadConfig,
   fontloadFile,
   gfxBase,
@@ -113,9 +150,6 @@ module.exports = {
   sassAll,
   sassBase,
   sassBuild,
-  sassCore,
-  sassCustom,
-  sassUtils,
   staticBase,
   tempBase,
   tplBase,
