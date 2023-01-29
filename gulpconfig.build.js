@@ -99,7 +99,7 @@ const faviconGenConfig = {
   orientation: 'portrait',
   scope: '/',
   start_url: '/index.html',
-  version: 1.0,
+  version: '0.0.0',
   logging: false,
   html: 'favicons.njk',
   pipeHTML: true,
@@ -116,17 +116,11 @@ const faviconGenConfig = {
   },
 };
 
-// Files that need to be removed
-// --------------
-
-const buildRevManifest = `${tempBase}/rev-manifest.json`;
-
 // Exports
 // --------------
 
 module.exports = {
   buildBase,
-  buildRevManifest,
   contentBase,
   datasetPagesBuild,
   datasetPagesSource,
