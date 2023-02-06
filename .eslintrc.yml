@@ -25,7 +25,7 @@ parserOptions:
   ecmaVersion: latest
   sourceType: module
   presets: ['@babel/preset-env']
-processor: 'disable'
+processor: 'disable/disable'
 rules:
   'require-sort/require-sort': [warn, { 'ignoreCase': true }]
   no-param-reassign: ['error', { 'props': false }]
