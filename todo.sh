@@ -27,7 +27,7 @@ function correct_file() {
 }
 
 # Write
-# =============
+# ============
 
 write_file
 
