@@ -50,7 +50,7 @@
     "cssnano": "^5.1.14",
     "dotenv": "^16.0.3",
     "fancy-log": "^2.0.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
